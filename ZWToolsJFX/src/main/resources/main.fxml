@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.web.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zwstudio.tools.controllers.ToolsController">
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+   <center>
+      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab text="プロセス一覧">
+             <content>
+              <fx:include fx:id="tool1" source="tool1.fxml" />
+             </content>
+          </Tab>
+          <Tab text="メッセージ一覧">
+            <content>
+              <fx:include fx:id="tool2" source="tool2.fxml" />
+            </content>
+          </Tab>
+          <Tab text="ツール">
+            <content>
+              <fx:include fx:id="tool3" source="tool3.fxml" />
+            </content>
+          </Tab>
+          <Tab text="Tab 4">
+            <content>
+              <fx:include fx:id="tool4" source="tool4.fxml" />
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </center>
+</BorderPane>

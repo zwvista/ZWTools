@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.web.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+
+<BorderPane prefHeight="385.0" prefWidth="434.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zwstudio.tools.controllers.Tool3Controller">
+   <center>
+      <FlowPane hgap="5.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0" vgap="5.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" onAction="#btnConvertTestOnAction" prefHeight="23.0" prefWidth="183.0" text="データ生成（テスト）" />
+            <Button mnemonicParsing="false" onAction="#btnConvertHonbanOnAction" prefHeight="23.0" prefWidth="183.0" text="データ生成（本番）" />
+            <Button mnemonicParsing="false" onAction="#btnCountDocManualOnAction" text="差分計算（オペレーションマニュアル）" />
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </BorderPane.margin>
+      </FlowPane>
+   </center>
+</BorderPane>
