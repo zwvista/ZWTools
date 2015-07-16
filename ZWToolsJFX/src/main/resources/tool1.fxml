@@ -17,18 +17,37 @@
               <columns>
                 <TableColumn fx:id="tcNum" prefWidth="62.0" text="No" />
                   <TableColumn fx:id="tcModule" prefWidth="88.0" text="モジュール" />
+                  <TableColumn fx:id="tcClassLName" prefWidth="88.0" text="クラス名論理" />
+                  <TableColumn fx:id="tcClassPName" prefWidth="88.0" text="クラス名ロジック" />
+                  <TableColumn fx:id="tcMethodLName" prefWidth="88.0" text="メソッド名論理" />
+                  <TableColumn fx:id="tcMethodPName" prefWidth="88.0" text="メソッド名ロジック" />
+                  <TableColumn fx:id="tcDaoClass" prefWidth="88.0" text="Dao" />
               </columns>
             </TableView>
-            <TextArea prefHeight="200.0" prefWidth="200.0" />
+            <SplitPane dividerPositions="0.5" orientation="VERTICAL">
+               <items>
+                  <TextArea fx:id="taSql" prefHeight="200.0" prefWidth="200.0" />
+                  <TextArea fx:id="taSqlString" prefHeight="200.0" prefWidth="200.0" />
+               </items>
+            </SplitPane>
          </items>
       </SplitPane>
    </center>
    <top>
       <HBox>
          <children>
-            <Label text="Filter:" />
-            <TextField fx:id="tfFilter" />
             <Button id="btnLoad" mnemonicParsing="false" onAction="#btnLoadOnAction" text="Load" BorderPane.alignment="CENTER" />
+            <Label text="Module:">
+               <HBox.margin>
+                  <Insets top="4.0" />
+               </HBox.margin></Label>
+            <TextField fx:id="tfModule" prefHeight="23.0" prefWidth="75.0" />
+            <Label text="Filter:">
+               <HBox.margin>
+                  <Insets top="4.0" />
+               </HBox.margin>
+            </Label>
+            <TextField fx:id="tfFilter" prefHeight="23.0" prefWidth="195.0" />
          </children>
       </HBox>
    </top>

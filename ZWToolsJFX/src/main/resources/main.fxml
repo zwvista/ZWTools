@@ -19,7 +19,7 @@
    <center>
       <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
-          <Tab text="プロセス一覧">
+          <Tab text="手動生成DAO一覧">
              <content>
               <fx:include fx:id="tool1" source="tool1.fxml" />
              </content>
