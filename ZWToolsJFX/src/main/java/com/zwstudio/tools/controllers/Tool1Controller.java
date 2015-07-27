@@ -67,8 +67,10 @@ public class Tool1Controller implements Initializable {
 		tblHWDaos.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<HWDao>() {
 			@Override
 			public void changed(ObservableValue<? extends HWDao> observable, HWDao oldValue, HWDao newValue) {
-				taSql.setText(newValue.getSql());
-				taSqlString.setText(newValue.getSqlString());
+				String sql = newValue == null ? null : newValue.getSql();
+				String sqlString = newValue == null ? null : newValue.getSqlString();
+				taSql.setText(sql);
+				taSqlString.setText(sqlString);
 			}
 		});
 		
@@ -84,6 +86,7 @@ public class Tool1Controller implements Initializable {
 						String vf = tfFilter.getText().toLowerCase();
 						return e.getModule().toLowerCase().contains(vm)
 							&&( e.getNum().toLowerCase().contains(vf)
+							|| e.getClassPName().toLowerCase().contains(vf)
 							|| e.getMethodPName().toLowerCase().contains(vf));
 					}
 				});

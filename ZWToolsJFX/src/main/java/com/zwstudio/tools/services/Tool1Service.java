@@ -44,9 +44,11 @@ public class Tool1Service {
 			String sqlR = op.apply("R");
 			String sql = sqlR.equals("") ? op.apply("Q") : sqlR;
 			String sqlString = Arrays.stream(sql.split("\n"))
-					.filter(s -> true)
+					.map(s -> s.split("--")[0])
+					.filter(s -> !s.trim().isEmpty())
+					.map(s -> s.endsWith(" ") ? s : s + " ")
 					.map(s -> "sql.append(\"" + s + "\");")
-					.reduce((acc, s) -> acc + "\n" + s).get();
+					.reduce((acc, s) -> acc + "\n" + s).orElse("");
 			daos.add(new HWDao() {{
 				setNum(num);
 				setModule(module);

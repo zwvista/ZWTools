@@ -27,17 +27,24 @@ public class HWDao {
     private JavaBeanStringProperty sqlProp;
     private JavaBeanStringProperty sqlStringProp;
     
+    @FunctionalInterface
+    public interface FunctionThatThrows<T, R> {
+        R apply(T t) throws NoSuchMethodException;
+    }
+    
     public HWDao() {
+		FunctionThatThrows<String, JavaBeanStringProperty> builder =
+				p -> JavaBeanStringPropertyBuilder.create().bean(this).name(p).build();
 		try {
-			numProp = JavaBeanStringPropertyBuilder.create().bean(this).name("num").build();
-			moduleProp = JavaBeanStringPropertyBuilder.create().bean(this).name("module").build();
-			classLNameProp = JavaBeanStringPropertyBuilder.create().bean(this).name("classLName").build();
-			classPNameProp = JavaBeanStringPropertyBuilder.create().bean(this).name("classPName").build();
-			methodLNameProp = JavaBeanStringPropertyBuilder.create().bean(this).name("methodLName").build();
-			methodPNameProp = JavaBeanStringPropertyBuilder.create().bean(this).name("methodPName").build();
-			daoClassProp = JavaBeanStringPropertyBuilder.create().bean(this).name("daoClass").build();
-			sqlProp = JavaBeanStringPropertyBuilder.create().bean(this).name("sql").build();
-			sqlStringProp = JavaBeanStringPropertyBuilder.create().bean(this).name("sqlString").build();
+			numProp = builder.apply("num");
+			moduleProp = builder.apply("module");
+			classLNameProp = builder.apply("classLName");
+			classPNameProp = builder.apply("classPName");
+			methodLNameProp = builder.apply("methodLName");
+			methodPNameProp = builder.apply("methodPName");
+			daoClassProp = builder.apply("daoClass");
+			sqlProp = builder.apply("sql");
+			sqlStringProp = builder.apply("sqlString");
 		} catch (NoSuchMethodException e) {
 			e.printStackTrace();
 		}
