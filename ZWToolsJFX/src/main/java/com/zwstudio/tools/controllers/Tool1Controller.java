@@ -57,12 +57,6 @@ public class Tool1Controller implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		tcNum.setCellValueFactory(d -> d.getValue().getNumProp());
-		tcModule.setCellValueFactory(d -> d.getValue().getModuleProp());
-		tcClassLName.setCellValueFactory(d -> d.getValue().getClassLNameProp());
-		tcClassPName.setCellValueFactory(d -> d.getValue().getClassPNameProp());
-		tcMethodLName.setCellValueFactory(d -> d.getValue().getMethodLNameProp());
-		tcMethodPName.setCellValueFactory(d -> d.getValue().getMethodPNameProp());
-		tcDaoClass.setCellValueFactory(d -> d.getValue().getDaoClassProp());
 		
 		tblHWDaos.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<HWDao>() {
 			@Override
@@ -82,12 +76,8 @@ public class Tool1Controller implements Initializable {
 				filteredList.setPredicate(new Predicate<HWDao>() {
 					@Override
 					public boolean test(HWDao e) {
-						String vm = tfModule.getText().toLowerCase();
 						String vf = tfFilter.getText().toLowerCase();
-						return e.getModule().toLowerCase().contains(vm)
-							&&( e.getNum().toLowerCase().contains(vf)
-							|| e.getClassPName().toLowerCase().contains(vf)
-							|| e.getMethodPName().toLowerCase().contains(vf));
+						return  e.getNum().toLowerCase().contains(vf);
 					}
 				});
 			}
