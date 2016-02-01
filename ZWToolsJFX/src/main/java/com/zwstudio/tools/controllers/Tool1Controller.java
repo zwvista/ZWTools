@@ -27,17 +27,9 @@ public class Tool1Controller implements Initializable {
     @FXML
     private TableColumn<HWDao, String> tcNum;
     @FXML
-    private TableColumn<HWDao, String> tcModule;
+    private TableColumn<HWDao, String> tcDaoClassName;
     @FXML
-    private TableColumn<HWDao, String> tcClassLName;
-    @FXML
-    private TableColumn<HWDao, String> tcClassPName;
-    @FXML
-    private TableColumn<HWDao, String> tcMethodLName;
-    @FXML
-    private TableColumn<HWDao, String> tcMethodPName;
-    @FXML
-    private TableColumn<HWDao, String> tcDaoClass;
+    private TableColumn<HWDao, String> tcDaoMethodName;
     @FXML
     private TableView<HWDao> tblHWDaos;
     @FXML
@@ -57,6 +49,8 @@ public class Tool1Controller implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		tcNum.setCellValueFactory(d -> d.getValue().getNumProp());
+		tcDaoClassName.setCellValueFactory(d -> d.getValue().getDaoClassNameProp());
+		tcDaoMethodName.setCellValueFactory(d -> d.getValue().getDaoMethodNameProp());
 		
 		tblHWDaos.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<HWDao>() {
 			@Override

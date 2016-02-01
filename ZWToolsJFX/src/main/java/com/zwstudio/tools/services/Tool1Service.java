@@ -41,10 +41,14 @@ public class Tool1Service {
 					.filter(s -> !s.trim().isEmpty())
 					.map(s -> "sb.append(\" " + s + "\");\n")
 					.collect(Collectors.joining());
+			String daoClassName = op.apply("C");
+			String daoMethodName = op.apply("D");
 			daos.add(new HWDao() {{
 				setNum(num);
 				setSql(sql);
 				setSqlString(sqlString);
+				setDaoClassName(daoClassName);
+				setDaoMethodName(daoMethodName);
 			}});
 		}
 	}

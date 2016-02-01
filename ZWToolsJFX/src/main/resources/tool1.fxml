@@ -16,12 +16,8 @@
             <TableView fx:id="tblHWDaos" prefHeight="461.0" prefWidth="593.0">
               <columns>
                 <TableColumn fx:id="tcNum" prefWidth="62.0" text="No" />
-                  <TableColumn fx:id="tcModule" prefWidth="88.0" text="モジュール" />
-                  <TableColumn fx:id="tcClassLName" prefWidth="88.0" text="クラス名論理" />
-                  <TableColumn fx:id="tcClassPName" prefWidth="88.0" text="クラス名物理" />
-                  <TableColumn fx:id="tcMethodLName" prefWidth="88.0" text="メソッド名論理" />
-                  <TableColumn fx:id="tcMethodPName" prefWidth="88.0" text="メソッド名物理" />
-                  <TableColumn fx:id="tcDaoClass" prefWidth="88.0" text="Dao" />
+                  <TableColumn fx:id="tcDaoClassName" prefWidth="88.0" text="DaoClass" />
+                  <TableColumn fx:id="tcDaoMethodName" prefWidth="88.0" text="DaoMethod" />
               </columns>
             </TableView>
             <SplitPane dividerPositions="0.5" orientation="VERTICAL">
