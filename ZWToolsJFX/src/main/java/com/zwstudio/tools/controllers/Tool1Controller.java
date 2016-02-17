@@ -33,8 +33,6 @@ public class Tool1Controller implements Initializable {
     @FXML
     private TableView<HWDao> tblHWDaos;
     @FXML
-    private TextField tfModule;
-    @FXML
     private TextField tfFilter;
     @FXML
     private TextArea taSql;
@@ -76,7 +74,6 @@ public class Tool1Controller implements Initializable {
 				});
 			}
 		};
-		tfModule.textProperty().addListener(listener);
 		tfFilter.textProperty().addListener(listener);
 		tblHWDaos.setItems(filteredList);
 	}
@@ -85,6 +82,17 @@ public class Tool1Controller implements Initializable {
     void btnLoadOnAction(ActionEvent event) {
     	try {
 			service.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
+	
+    @FXML
+    void btnUpdateSqlOnAction(ActionEvent event) {
+    	int k = tblHWDaos.getSelectionModel().getSelectedIndex() + 1;
+    	String sql = taSql.getText();
+    	try {
+			service.updateSql(k, sql);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

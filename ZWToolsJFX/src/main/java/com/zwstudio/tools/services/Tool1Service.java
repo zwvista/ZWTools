@@ -2,6 +2,7 @@ package com.zwstudio.tools.services;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.function.UnaryOperator;
@@ -24,10 +25,9 @@ import lombok.Getter;
 public class Tool1Service {
 	@Getter
 	private ObservableList<HWDao> daos = FXCollections.observableArrayList();
+	private String path = "C:\\work\\zw.xlsx";
 	
 	public void load() throws IOException {
-		String path = "C:\\work\\zw.xlsx";
-		
 		FileInputStream file = new FileInputStream(new File(path));
 		XSSFWorkbook workbook = new XSSFWorkbook(file);
 		XSSFSheet sheet = workbook.getSheet("SQL");
@@ -51,5 +51,19 @@ public class Tool1Service {
 				setDaoMethodName(daoMethodName);
 			}});
 		}
+		file.close();
+	}
+	
+	public void updateSql(int k, String sql) throws IOException {
+		FileInputStream fileIn = new FileInputStream(new File(path));
+		XSSFWorkbook workbook = new XSSFWorkbook(fileIn);
+		XSSFSheet sheet = workbook.getSheet("SQL");
+		XSSFRow row = sheet.getRow(k);
+		row.getCell(CellReference.convertColStringToIndex("B"), Row.CREATE_NULL_AS_BLANK)
+			.setCellValue(sql);
+		fileIn.close();
+		FileOutputStream fileOut = new FileOutputStream(new File(path));
+		workbook.write(fileOut);
+		fileOut.close();
 	}
 }

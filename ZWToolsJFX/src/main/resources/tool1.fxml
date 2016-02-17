@@ -33,17 +33,13 @@
       <HBox>
          <children>
             <Button id="btnLoad" mnemonicParsing="false" onAction="#btnLoadOnAction" text="Load" BorderPane.alignment="CENTER" />
-            <Label text="Module:">
-               <HBox.margin>
-                  <Insets top="4.0" />
-               </HBox.margin></Label>
-            <TextField fx:id="tfModule" prefHeight="23.0" prefWidth="75.0" />
             <Label text="Filter:">
                <HBox.margin>
                   <Insets top="4.0" />
                </HBox.margin>
             </Label>
             <TextField fx:id="tfFilter" prefHeight="23.0" prefWidth="195.0" />
+            <Button mnemonicParsing="false" onAction="#btnUpdateSqlOnAction" text="Update SQL" />
          </children>
       </HBox>
    </top>
