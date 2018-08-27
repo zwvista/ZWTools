@@ -20,7 +20,7 @@ namespace aa
                 BaseAddress = new Uri("https://github.com/btroncone/learn-rxjs")
             };
             var str = await client.GetStringAsync("");
-            var r = new Regex(@"<li><a href=""(/btroncone/learn-rxjs/blob/master/operators/\w+/\w+.md)"">(\w+)</a></li>");
+            var r = new Regex(@"<li><a href=""(/btroncone/learn-rxjs/blob/master/operators/\w+/\w+.md)"">(.+?)</a>.*?</li>");
             var r2 = new Regex(@"<div class=""highlight highlight-source-js""><pre>((?:.|\n)+?)</pre></div>");
             var r3 = new Regex("<.+?>");
             var r4 = new Regex("import .+");
@@ -31,7 +31,7 @@ namespace aa
             }).ForEach(o => client.GetStringAsync(o.Url).ToObservable().SelectMany(str2 =>
                 r.Matches(str2).Cast<Match>().Select(m => {
                     var g = m.Groups.Cast<Group>().ToList();
-                    return new { Url = g[1].Value, Name = g[2].Value };
+                    return new { Url = g[1].Value, Name = g[2].Value.Replace(" / ", "_") };
                 }).ToObservable()
                 .SelectMany(o2 => client.GetStringAsync(o2.Url).ToObservable().Select(str3 => {
                     var examples2 = r2.Matches(str3).Cast<Match>()
