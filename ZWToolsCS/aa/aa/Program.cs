@@ -32,19 +32,22 @@ namespace aa
                 r.Matches(str2).Cast<Match>().Select(m => {
                     var g = m.Groups.Cast<Group>().ToList();
                     return new { Url = g[1].Value, Name = g[2].Value };
-                }).ToObservable().Do(o2 =>
-                    Console.WriteLine($@"  <button (click)=""{o.Name}Service.{o2.Name}()"">{o2.Name}</button>")
-                ).SelectMany(o2 => client.GetStringAsync(o2.Url).ToObservable().Select(str3 => 
-                    r2.Matches(str3).Cast<Match>()
+                }).ToObservable()
+                .SelectMany(o2 => client.GetStringAsync(o2.Url).ToObservable().Select(str3 => {
+                    var examples2 = r2.Matches(str3).Cast<Match>()
                         .Select(m => HttpUtility.HtmlDecode(m.Groups.Cast<Group>().ElementAt(1).Value))
                         .SelectMany((s, i) => r5.Replace(r4.Replace(r3.Replace(s, "").Replace("// RxJS v6+\n", ""), ""), "$1 $2")
                             .Split('\n').SkipWhile(s2 => string.IsNullOrWhiteSpace(s2))
                             .Select(s2 => "    " + s2).StartWith($"  {o2.Name}{i + 1}() {{").Concat(new[] { "  }", "" })
                             .ToList()
-                        ).ToList()
-                )).SelectMany(o2 => o2).ToList()
+                        ).ToList();
+                    r2.Matches(str3).Cast<Match>()
+                        .Select((m, i) => $@"  <button (click)=""{o.Name}Service.{o2.Name}{i + 1}()"">{o2.Name}{i + 1}</button>")
+                        .ToList().ForEach(Console.WriteLine);
+                    return examples2;
+                })).SelectMany(o2 => o2).ToList()
             ).Subscribe(examples =>
-                File.WriteAllLines($"/Users/zhaowei/Documents/Programs/Tools/{o.Name}.ts", examples)
+                File.WriteAllLines($"../{o.Name}.ts", examples)
             ));
             Console.ReadKey();
         }
